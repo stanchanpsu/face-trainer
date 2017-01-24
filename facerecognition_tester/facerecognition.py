@@ -33,7 +33,7 @@ else:
     print "ALGORITHM: Eigen"
     model = cv2.face.createEigenFaceRecognizer(threshold=config.POSITIVE_THRESHOLD)
 
-model.load("../facetrainer/training.xml")
+model.load("training.xml")
 print('Training data loaded!')
 
 camera = config.get_camera()
@@ -78,10 +78,10 @@ while True:
                     print('Guess:' + config.users[label - 1])
                 else:
                     cv2.putText(frame, "Unknown", (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 1)
-                    print('Unknown face')
+                    print('Unknown face, confidence is only:' + str(confidence))
             else:
                 cv2.putText(frame, "Unknown", (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 1)
-                print('Unknown face')
+                print('Unknown face, confidence is only: ' + str(confidence))
 
             # If person is close enough
             if h > 250:
